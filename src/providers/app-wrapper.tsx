@@ -9,7 +9,7 @@ export default function AppWrapper({
   return (
     <QueryProvider>
       {children}
-      <Toaster />
+      <Toaster richColors />
     </QueryProvider>
   );
 }

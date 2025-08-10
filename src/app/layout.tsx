@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import AppWrapper from "@/providers/app-wrapper";
+import Header from "@/components/header/header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Link Hunter",
+  title: "Linksy",
   description: "A link shortener app",
 };
 
@@ -26,10 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased mx-auto flex flex-col min-h-screen bg-[#F2F2F2]`}
       >
         <AppWrapper>
-          <main>{children}</main>
+          <Header />
+          <main className="bg-[#F2F2F2] flex-1 flex flex-col gap-20 pt-20">
+            {children}
+          </main>
         </AppWrapper>
       </body>
     </html>
