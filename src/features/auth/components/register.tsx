@@ -17,14 +17,9 @@ import { toast } from "sonner";
 
 function Register() {
   const { mutate: register } = useRegister();
-  const handleRegister = ({
-    username,
-    password,
-    idNumber,
-    mobile,
-  }: RegisterRequest) => {
+  const handleRegister = ({ username, password }: RegisterRequest) => {
     register(
-      { username, password, idNumber, mobile },
+      { username, password },
       {
         onSuccess: () => {
           toast.success("Kayıt Başarılı!");
@@ -56,9 +51,7 @@ function Register() {
               const formData = new FormData(e.target as HTMLFormElement);
               const username = formData.get("username") as string;
               const password = formData.get("password") as string;
-              const idNumber = formData.get("idNumber") as unknown as number;
-              const mobile = formData.get("mobile") as unknown as number;
-              handleRegister({ username, password, idNumber, mobile });
+              handleRegister({ username, password });
             }}
           >
             <div className="space-y-2">

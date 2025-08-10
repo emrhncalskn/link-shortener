@@ -6,6 +6,4 @@ export type LoginRequest = {
 export type RegisterRequest = {
   username: string;
   password: string;
-  idNumber: number;
-  mobile: number;
 };
