@@ -22,7 +22,6 @@ function Login() {
       { username, password },
       {
         onSuccess: (data) => {
-          console.log("Login successful:", data);
           Cookies.set("token", data, {
             expires: 7,
           });
@@ -30,19 +29,19 @@ function Login() {
           window.location.href = "/";
         },
         onError: (error) => {
-          toast.error(`Giriş Başarısız!`);
+          toast.error(error.response?.data?.message);
         },
       }
     );
   };
   return (
-    <div className="flex flex-col items-center justify-center my-10 p-4">
-      <Card className="w-full max-w-md">
+    <div className="flex flex-col items-center justify-center my-10 p-4 bg-[#F2F2F2]">
+      <Card className="w-full max-w-md bg-white border-[#5C636E]/20">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center text-primary/85">
+          <CardTitle className="text-2xl text-center text-[#393E46]">
             Giriş Yap
           </CardTitle>
-          <CardDescription className="text-center text-[#4e4e4e]">
+          <CardDescription className="text-center text-[#5C636E]">
             Lütfen kullanıcı adınızı ve şifrenizi girin.
             <br />
             Hesabınız yoksa kayıt olabilirsiniz.
@@ -60,22 +59,28 @@ function Login() {
             }}
           >
             <div className="space-y-2">
-              <Label htmlFor="username">Kullanıcı Adı</Label>
+              <Label htmlFor="username" className="text-[#393E46]">
+                Kullanıcı Adı
+              </Label>
               <Input
                 type="text"
                 id="username"
                 name="username"
                 placeholder="Kullanıcı adınızı girin"
+                className="bg-[#F2F2F2] border-[#5C636E]/30 text-[#393E46] placeholder:text-[#5C636E] focus:border-[#F96D00]"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Şifre</Label>
+              <Label htmlFor="password" className="text-[#393E46]">
+                Şifre
+              </Label>
               <Input
                 type="password"
                 id="password"
                 name="password"
                 placeholder="Şifrenizi girin"
+                className="bg-[#F2F2F2] border-[#5C636E]/30 text-[#393E46] placeholder:text-[#5C636E] focus:border-[#F96D00]"
                 required
               />
             </div>
@@ -85,11 +90,11 @@ function Login() {
           </form>
 
           <div className="mt-6 space-y-2 text-center text-sm">
-            <p>
+            <p className="text-[#5C636E]">
               Hesabınız yok mu?{" "}
               <Link
                 href="/kayit"
-                className="text-primary hover:scale-105 transition-transform duration-200 inline-block"
+                className="text-[#F96D00] hover:scale-105 transition-transform duration-200 inline-block font-medium"
               >
                 Kayıt Ol
               </Link>
@@ -97,7 +102,7 @@ function Login() {
             <p>
               <Link
                 href="/"
-                className="text-primary hover:scale-105 transition-transform duration-200 inline-block"
+                className="text-[#F96D00] hover:scale-105 transition-transform duration-200 inline-block font-medium"
               >
                 Ana Sayfaya Dön
               </Link>

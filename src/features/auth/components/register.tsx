@@ -26,20 +26,20 @@ function Register() {
           window.location.href = "/giris";
         },
         onError: (error) => {
-          toast.error("Kayıt Başarısız!");
+          toast.error(error.response?.data?.message || "Kayıt başarısız!");
         },
       }
     );
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-10 p-4">
-      <Card className="w-full max-w-md">
+    <div className="flex flex-col items-center justify-center my-10 p-4 bg-[#F2F2F2]">
+      <Card className="w-full max-w-md bg-white border-[#5C636E]/20">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center text-primary/85">
+          <CardTitle className="text-2xl text-center text-[#393E46]">
             Kayıt Ol
           </CardTitle>
-          <CardDescription className="text-center text-[#4e4e4e]">
+          <CardDescription className="text-center text-[#5C636E]">
             Hesap oluşturmak için bilgilerinizi girin
           </CardDescription>
         </CardHeader>
@@ -55,22 +55,28 @@ function Register() {
             }}
           >
             <div className="space-y-2">
-              <Label htmlFor="username">Kullanıcı Adı</Label>
+              <Label htmlFor="username" className="text-[#393E46]">
+                Kullanıcı Adı
+              </Label>
               <Input
                 type="text"
                 id="username"
                 name="username"
                 placeholder="Kullanıcı adınızı girin"
+                className="bg-[#F2F2F2] border-[#5C636E]/30 text-[#393E46] placeholder:text-[#5C636E] focus:border-[#F96D00]"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Şifre</Label>
+              <Label htmlFor="password" className="text-[#393E46]">
+                Şifre
+              </Label>
               <Input
                 type="password"
                 id="password"
                 name="password"
                 placeholder="Şifrenizi girin"
+                className="bg-[#F2F2F2] border-[#5C636E]/30 text-[#393E46] placeholder:text-[#5C636E] focus:border-[#F96D00]"
                 required
               />
             </div>
@@ -80,11 +86,11 @@ function Register() {
           </form>
 
           <div className="mt-6 space-y-2 text-center text-sm">
-            <p>
+            <p className="text-[#5C636E]">
               Zaten hesabınız var mı?{" "}
               <Link
                 href="/giris"
-                className="text-primary hover:scale-105 transition-transform duration-200 inline-block"
+                className="text-[#F96D00] hover:scale-105 transition-transform duration-200 inline-block font-medium"
               >
                 Giriş Yap
               </Link>
@@ -92,7 +98,7 @@ function Register() {
             <p>
               <Link
                 href="/"
-                className="text-primary hover:scale-105 transition-transform duration-200 inline-block"
+                className="text-[#F96D00] hover:scale-105 transition-transform duration-200 inline-block font-medium"
               >
                 Ana Sayfaya Dön
               </Link>
