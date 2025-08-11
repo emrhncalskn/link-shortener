@@ -12,9 +12,6 @@ export default function Header() {
   const handleLogin = () => {
     router.push("/giris");
   };
-  const handleRegister = () => {
-    router.push("/kayit");
-  };
   const handleNavigation = (path: string) => router.push(path);
 
   const { userProfile, isLoading } = useUserProfile();
@@ -29,9 +26,9 @@ export default function Header() {
   return (
     <header
       id="#"
-      className="relative top-0 z-40 bg-white border-b w-full shadow-sm"
+      className="relative top-0 z-40 bg-white border-b w-full shadow-sm px-16"
     >
-      <div className="flex items-center px-5 py-5 gap-20 max-w-7xl mx-auto">
+      <div className="flex items-center py-5 gap-20 max-w-7xl mx-auto">
         <div className="flex-1 flex items-center">
           <a
             href="/"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { UserProfile } from "@/features/user/types";
+import { UserProfile } from "@/features/profile/types";
 
 export const useUserProfile = () => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -22,5 +22,15 @@ export const useUserProfile = () => {
     loadUserProfile();
   }, []);
 
-  return { userProfile, isLoading };
+  const refreshUserProfile = () => {
+    try {
+      const user = Cookies.get("user");
+      setUserProfile(user ? JSON.parse(user) : null);
+    } catch (error) {
+      console.error("Error parsing user profile:", error);
+      setUserProfile(null);
+    }
+  };
+
+  return { userProfile, isLoading, refreshUserProfile };
 };

@@ -1,6 +1,6 @@
-import { Link, LogOut, Menu, User } from "lucide-react";
+import { Link, Link2, LogOut, Menu, User } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { UserProfile } from "../../../features/user/types";
+import { UserProfile } from "../../../features/profile/types";
 import { Button } from "../../ui/button";
 import {
   DropdownMenu,
@@ -65,6 +65,19 @@ export const UserMenu = ({
               }`}
             />
             <span>Link Oluştur</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => onNavigate("/linklerim")}
+            className={`text-[#393E46] ${
+              pathname === "/linklerim" ? "bg-[#F2F2F2] text-[#F96D00]" : ""
+            }`}
+          >
+            <Link2
+              className={`mr-2 h-4 w-4 ${
+                pathname === "/linklerim" ? "text-[#F96D00]" : "text-[#5C636E]"
+              }`}
+            />
+            <span>Linklerim</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-[#5C636E]/20" />
           <DropdownMenuItem onClick={onLogout} className="text-[#393E46]">
