@@ -54,7 +54,7 @@ JWT_SECRET=super-secret-dev-key
 Açıklama:
 
 - `NEXT_PUBLIC_API_URL`: Frontend'in istek atacağı backend endpoint baz adresi. (Public prefix gerekli.)
-- `JWT_SECRET`: Middleware içindeki token doğrulaması ve `utils/jwt.ts` fonksiyonları için paylaşılan gizli anahtar (backend ile aynı olmalı ya da token backend üretip burada sadece doğrulanıyorsa doğrulamada kullanılan secret olmalı).
+- `JWT_SECRET`: Middleware içindeki token doğrulaması ve `utils/jwt.ts` fonksiyonları için paylaşılan gizli anahtar (backend ile aynı olmalı).
 
 ## 5. Çalıştırma Komutları
 
