@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Link Shortener
 
-## Getting Started
+Kısa link üretme, yönetme, istatistik görüntüleme ve profil yönetimi özelliklerine sahip bir Next.js 15 uygulaması.
 
-First, run the development server:
+## İçerik
+
+1. Özellikler
+2. Gereksinimler
+3. Kurulum (Yerel Geliştirme)
+4. Ortam Değişkenleri (.env.local)
+5. Çalıştırma Komutları
+6. Build & Production
+7. Proje Yapısı
+8. Geliştirme Notları
+
+## 1. Özellikler
+
+- Kısa link oluşturma
+- Link listesi ("linklerim") ve düzenleme / silme
+- Kısa kod güncelleme (çakışma kontrolü backend tarafından beklenir)
+- Detay / istatistik sayfası: `/link/detay/:shortCode`
+- Profil görüntüleme & güncelleme (kullanıcı adı, opsiyonel şifre) & profil silme
+- JWT tabanlı oturum (token + user cookie senkronizasyonu)
+- Korunan & herkese açık rotalar (middleware ile)
+- React Query ile veri önbellekleme
+- TailwindCSS 4 + shadcn tarzı UI bileşenleri
+
+## 2. Gereksinimler
+
+- Node.js >= 18 (Önerilen LTS)
+- npm (veya yarn / pnpm) - örnekler npm ile verilmiştir
+- Çalışan bir backend API (README sadece frontend kurulumunu kapsar)
+
+## 3. Kurulum (Yerel Geliştirme)
+
+```bash
+git clone https://github.com/emrhncalskn/link-shortener.git
+cd link-shortener/link-shortener
+npm install
+cp .env.example .env.local # (Eğer .env.example yoksa aşağıdaki örneği manuel oluşturun)
+```
+
+`.env.example` dosyanız yoksa bir sonrakindeki örneği kullanarak `.env.local` oluşturun.
+
+## 4. Ortam Değişkenleri (.env.local)
+
+Uygulama aşağıdaki değişkenleri bekler:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
+JWT_SECRET=super-secret-dev-key
+```
+
+Açıklama:
+
+- `NEXT_PUBLIC_API_URL`: Frontend'in istek atacağı backend endpoint baz adresi. (Public prefix gerekli.)
+- `JWT_SECRET`: Middleware içindeki token doğrulaması ve `utils/jwt.ts` fonksiyonları için paylaşılan gizli anahtar (backend ile aynı olmalı ya da token backend üretip burada sadece doğrulanıyorsa doğrulamada kullanılan secret olmalı).
+
+## 5. Çalıştırma Komutları
+
+Geliştirme sunucusu:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcıdan: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Lint:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+```
 
-## Learn More
+## 6. Build & Production
 
-To learn more about Next.js, take a look at the following resources:
+Production build almak:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Çalıştırmak:
 
-## Deploy on Vercel
+```bash
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Not: Production ortamında `.env.local` yerine sistem ortam değişkenleri veya `.env` kullanabilirsiniz. `NEXT_PUBLIC_` ile başlayanlar istemci bundle'ına gömülür; gizli kalması gereken değerler için bu prefix'i kullanmayın.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 7. Proje Yapısı (Özet)
+
+```
+src/
+	app/               # Next.js (app router) segmentleri
+	constants/         # Rota ve sabit tanımları
+	features/          # Feature bazlı modüller (link, profile, common ...)
+	middleware.ts      # Auth & yönlendirme kontrolü
+	utils/             # JWT vb. yardımcılar
+```
+
+Önemli Rotalar:
+
+- Korunan: /profil, /olustur, /linklerim, /link/detay/:shortCode
+- Public: /giris, /kayit
