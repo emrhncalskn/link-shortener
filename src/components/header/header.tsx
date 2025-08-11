@@ -31,7 +31,7 @@ export default function Header() {
       id="#"
       className="relative top-0 z-40 bg-white border-b w-full shadow-sm"
     >
-      <div className="flex items-center px-10 py-5 gap-2 max-w-7xl mx-auto">
+      <div className="flex items-center px-5 py-5 gap-20 max-w-7xl mx-auto">
         <div className="flex-1 flex items-center">
           <a
             href="/"

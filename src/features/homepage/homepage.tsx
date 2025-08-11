@@ -1,26 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link, Zap, Shield, Stethoscope, Pill } from "lucide-react";
-import HeroImage from "@/assets/svgs/HeroImage";
-export interface Statistic {
-  icon: React.ComponentType<{ className?: string }>;
-  number: string;
-  label: string;
-}
-export const statistics: Statistic[] = [
-  {
-    icon: Stethoscope,
-    number: "1500+",
-    label: "Kullanıcı Sayısı",
-  },
-  {
-    icon: Pill,
-    number: "100.000+",
-    label: "Oluşturulan Link",
-  },
-];
+import { Card, CardContent } from "@/components/ui/card";
+import { STATISTICS } from "@/constants/statistics.constant";
+import { useRouter } from "next/navigation";
 
 export default function Homepage() {
   const router = useRouter();
@@ -46,7 +28,7 @@ export default function Homepage() {
               Hemen Link Kısalt
             </Button>
             <div className="flex w-full justify-around max-w-4xl">
-              {statistics.map((stat, index) => {
+              {STATISTICS.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
                   <Card
@@ -75,7 +57,7 @@ export default function Homepage() {
           </div>
           <div className="w-[52%] flex items-center justify-center max-[991px]:w-full">
             <div className="rounded-3xl md:h-170 sm:h-130 object-cover">
-              <HeroImage />
+              <img src={"/images/hero.jpg"}></img>
             </div>
           </div>
         </div>

@@ -31,11 +31,7 @@ export const UserMenu = ({
       </span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="link"
-            size="icon"
-            className="hidden min-[991px]:flex"
-          >
+          <Button variant="link" size="icon">
             <Menu className="scale-125" />
           </Button>
         </DropdownMenuTrigger>
