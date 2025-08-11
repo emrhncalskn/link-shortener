@@ -35,10 +35,10 @@ export const getLinkStats = async (
 
 export const updateLinkCustomCode = async (
   shortCode: string,
-  newCustomCode: string
+  newShortCode: string
 ): Promise<LinkResponse> => {
   const response = await apiInstance.put(`/${shortCode}`, {
-    customCode: newCustomCode,
+    newShortCode,
   });
   return response.data.data;
 };

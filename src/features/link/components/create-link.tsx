@@ -90,7 +90,6 @@ export default function CreateLink() {
                 </div>
               </div>
 
-              {/* Custom Code Input */}
               <div className="space-y-2">
                 <Label htmlFor="code" className="text-[#393E46] font-medium">
                   Özel Kod (İsteğe Bağlı)

@@ -52,12 +52,18 @@ export const useUpdateLinkCustomCode = () => {
   return useMutation<
     LinkResponse,
     Error,
-    { shortCode: string; newCustomCode: string }
+    { shortCode: string; newShortCode: string }
   >({
-    mutationFn: ({ shortCode, newCustomCode }) =>
-      updateLinkCustomCode(shortCode, newCustomCode),
-    onSuccess: () => {
+    mutationFn: ({ shortCode, newShortCode }) =>
+      updateLinkCustomCode(shortCode, newShortCode),
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: ["my-links"] });
+      queryClient.invalidateQueries({
+        queryKey: ["link-stats", variables.shortCode],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["link-stats", variables.newShortCode],
+      });
     },
   });
 };
