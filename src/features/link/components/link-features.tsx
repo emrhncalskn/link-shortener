@@ -7,7 +7,7 @@ export function LinkFeatures() {
       {FEATURES.map(({ icon: Icon, title, description }) => (
         <Card key={title} className="text-center bg-white border-[#5C636E]/20">
           <CardHeader>
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 bg-[#F96D00]">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 bg-[#F96D00]/90">
               <Icon className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-[#393E46] font-semibold">

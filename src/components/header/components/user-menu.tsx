@@ -1,4 +1,4 @@
-import { LogOut, Menu, User } from "lucide-react";
+import { Link, LogOut, Menu, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { UserProfile } from "../../../features/user/types";
 import { Button } from "../../ui/button";
@@ -52,6 +52,19 @@ export const UserMenu = ({
               }`}
             />
             <span>Profil</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => onNavigate("/olustur")}
+            className={`text-[#393E46] ${
+              pathname === "/olustur" ? "bg-[#F2F2F2] text-[#F96D00]" : ""
+            }`}
+          >
+            <Link
+              className={`mr-2 h-4 w-4 ${
+                pathname === "/olustur" ? "text-[#F96D00]" : "text-[#5C636E]"
+              }`}
+            />
+            <span>Link Oluştur</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-[#5C636E]/20" />
           <DropdownMenuItem onClick={onLogout} className="text-[#393E46]">
