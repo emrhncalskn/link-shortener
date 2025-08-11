@@ -1,8 +1,10 @@
+"use client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MousePointer, Link as LinkIcon } from "lucide-react";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
+import { useRouter } from "next/navigation";
 import { LinkResponse } from "@/features/link/types";
 
 interface TopLinkCardProps {
@@ -11,12 +13,23 @@ interface TopLinkCardProps {
 }
 
 export const TopLinkCard = ({ link, rank }: TopLinkCardProps) => {
-  const handleShortCodeClick = () => {
+  const router = useRouter();
+
+  const handleShortCodeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     window.open(link.shortUrl || `/${link.shortCode}`, "_blank");
   };
 
+  const handleCardClick = () => {
+    router.push(`/link/detay/${link.shortCode}`);
+  };
+
   return (
-    <Card className="bg-white border-[#5C636E]/20 shadow-md hover:shadow-lg transition-shadow">
+    <Card
+      className="bg-white border-[#5C636E]/20 shadow-md hover:shadow-lg transition-all cursor-pointer hover:border-[#F96D00]/50"
+      onClick={handleCardClick}
+      title="Detay sayfasına gitmek için tıklayın"
+    >
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <Badge
@@ -49,6 +62,7 @@ export const TopLinkCard = ({ link, rank }: TopLinkCardProps) => {
           <div
             className="flex items-center space-x-2 mt-1 cursor-pointer hover:bg-[#F2F2F2] p-2 rounded-md transition-colors"
             onClick={handleShortCodeClick}
+            title="Kısa linki yeni sekmede açmak için tıklayın"
           >
             <LinkIcon className="w-4 h-4 text-[#F96D00]" />
             <span className="text-[#F96D00] font-mono font-medium hover:underline">
